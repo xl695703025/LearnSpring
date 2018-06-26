@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/aop 
+	http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
+		http://www.springframework.org/schema/beans 
+		http://www.springframework.org/schema/beans/spring-beans-4.3.xsd">
+
+	<!-- 此处通过property为属性赋值，实际上是通过set方法进行赋值 -->
+	<bean id="helloYuxia" class="com.yuxia.hello.HelloSpring">
+		<property name="who" value="Yuxia" />
+	</bean>
+	<!-- 通过p命名空间赋值，简化操作 -->
+	<bean id="helloSpring" class="com.yuxia.hello.HelloSpring" p:who="Spring" />
+
+
+	<bean id="colorInk" class="com.yuxia.printer.ColorInkImpl" />
+	<bean id="greyInk" class="com.yuxia.printer.GreyInkImpl" />
+	<bean id="a4Paper" class="com.yuxia.printer.PaperImpl" p:charPerLine="10" p:linePerPage="8" />
+	<bean id="b5Paper" class="com.yuxia.printer.PaperImpl" p:charPerLine="6" p:linePerPage="5" />
+	<bean id="printer" class="com.yuxia.printer.Printer" p:ink-ref="colorInk" p:paper-ref="b5Paper"/>
+
+
+	<bean id="userService" class="com.yuxia.service.UserServiceImpl"></bean>
+	<bean id="myAspect" class="com.yuxia.aspect.MyAspect"></bean>
+
+	<aop:config>
+		<aop:aspect ref="myAspect">
+			<aop:pointcut expression="execution(* com.yuxia.service.*.*(..))"
+				id="pointcut" />
+			<aop:around method="around" pointcut-ref="pointcut" />
+			<aop:before method="before" pointcut-ref="pointcut" />
+		</aop:aspect>
+	</aop:config>
+</beans>

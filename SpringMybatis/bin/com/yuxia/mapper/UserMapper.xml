@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yuxia.mapper.UserMapper">
+	<resultMap type="User" id="userList">
+		<result property="userRoleName" column="roleName"/>
+	</resultMap>
+	<select id="getUserList" resultMap="userList">
+		select u.*,r.roleName from smbms_user u,smbms_role r
+		where u.userName like CONCAT('%',#{userName},'%')
+		and u.userRole = #{userRole} and u.userRole=r.id
+	</select>
+	<insert id="add" parameterType="User">
+		insert into smbms_user(id,userCode,userName,userPassword,gender,birthday,phone,address,userRole,createdBy,creationDate)
+						 value(#{id},#{userCode},#{userName},#{userPassword},#{gender},#{birthday},#{phone},#{address},#{userRole},#{createdBy},#{creationDate})
+	</insert>
+</mapper>

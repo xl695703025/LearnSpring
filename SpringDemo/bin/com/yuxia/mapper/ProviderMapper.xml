@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yuxia.mapper.ProviderMapper">
+	<select id="selectById" resultType="provider">
+		select * from smbms_provider where id=#{id}
+	</select>
+	<select id="selectAll" resultType="provider">
+		select * from smbms_provider
+	</select>
+	
+	<select id="selectByProId" resultMap="provider">
+		select p.* ,b.billCode,b.productName,b.totalPrice,b.isPayment
+		from smbms_provider p,smbms_bill b
+		where p.id=#{id} and p.id=b.providerId
+	</select>
+	<resultMap type="Provider" id="provider">
+		<id property="id" column="id"/>
+		<result	property="proCode" column="proCode"/>
+		<result	property="proName" column="proName"/>
+		<result	property="proContact" column="proContact"/>
+		<result	property="proPhone" column="proPhone"/>
+		<collection property="billList" ofType="Bill" resultMap="billList"></collection>
+	</resultMap>
+	<resultMap type="Bill" id="billList">
+		<result property="billCode" column="billCode"/>
+		<result property="productName" column="productName"/>
+		<result property="totalPrice" column="totalPrice"/>
+		<result property="isPayment" column="isPayment"/>
+	</resultMap>
+</mapper>

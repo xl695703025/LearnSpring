@@ -1,0 +1,41 @@
+DEBUG [main] 2018-06-25 09:40:26 (LogFactory.java:135) Logging initialized using 'class org.apache.ibatis.logging.log4j2.Log4j2Impl' adapter.
+DEBUG [main] 2018-06-25 09:40:26 (SqlSessionUtils.java:97) Creating a new SqlSession
+DEBUG [main] 2018-06-25 09:40:26 (SqlSessionUtils.java:148) SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@6cdba6dc] was not registered for synchronization because synchronization is not active
+DEBUG [main] 2018-06-25 09:40:26 (SpringManagedTransaction.java:87) JDBC Connection [473153915, URL=jdbc:mysql://127.0.0.1/smbms?characterEncoding=utf-8&useSSL=false, UserName=root@localhost, MySQL Connector Java] will not be managed by Spring
+DEBUG [main] 2018-06-25 09:40:26 (BaseJdbcLogger.java:159) ==>  Preparing: select b.*,p.proName from smbms_bill b,smbms_provider p WHERE p.proName like CONCAT('%',?,'%') and p.id=? and b.isPayment=? and b.providerId=p.id 
+DEBUG [main] 2018-06-25 09:40:26 (BaseJdbcLogger.java:159) ==> Parameters: 肥宅(String), 1(Integer), 2(Integer)
+DEBUG [main] 2018-06-25 09:40:26 (BaseJdbcLogger.java:159) <==      Total: 0
+DEBUG [main] 2018-06-25 09:40:26 (SqlSessionUtils.java:191) Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@6cdba6dc]
+DEBUG [main] 2018-06-25 09:42:28 (LogFactory.java:135) Logging initialized using 'class org.apache.ibatis.logging.log4j2.Log4j2Impl' adapter.
+DEBUG [main] 2018-06-25 09:42:28 (SqlSessionUtils.java:97) Creating a new SqlSession
+DEBUG [main] 2018-06-25 09:42:28 (SqlSessionUtils.java:148) SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@6cdba6dc] was not registered for synchronization because synchronization is not active
+DEBUG [main] 2018-06-25 09:42:29 (SpringManagedTransaction.java:87) JDBC Connection [473153915, URL=jdbc:mysql://127.0.0.1/smbms?characterEncoding=utf-8&useSSL=false, UserName=root@localhost, MySQL Connector Java] will not be managed by Spring
+DEBUG [main] 2018-06-25 09:42:29 (BaseJdbcLogger.java:159) ==>  Preparing: select b.*,p.proName from smbms_bill b,smbms_provider p WHERE b.productName like CONCAT('%',?,'%') and p.id=? and b.isPayment=? and b.providerId=p.id 
+DEBUG [main] 2018-06-25 09:42:29 (BaseJdbcLogger.java:159) ==> Parameters: 肥宅(String), 1(Integer), 2(Integer)
+DEBUG [main] 2018-06-25 09:42:29 (SqlSessionUtils.java:191) Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@6cdba6dc]
+DEBUG [main] 2018-06-25 09:45:42 (LogFactory.java:135) Logging initialized using 'class org.apache.ibatis.logging.log4j2.Log4j2Impl' adapter.
+DEBUG [main] 2018-06-25 09:45:42 (SqlSessionUtils.java:97) Creating a new SqlSession
+DEBUG [main] 2018-06-25 09:45:42 (SqlSessionUtils.java:148) SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@6cdba6dc] was not registered for synchronization because synchronization is not active
+DEBUG [main] 2018-06-25 09:45:42 (SqlSessionUtils.java:191) Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@6cdba6dc]
+DEBUG [main] 2018-06-25 09:46:03 (LogFactory.java:135) Logging initialized using 'class org.apache.ibatis.logging.log4j2.Log4j2Impl' adapter.
+DEBUG [main] 2018-06-25 09:46:03 (SqlSessionUtils.java:97) Creating a new SqlSession
+DEBUG [main] 2018-06-25 09:46:03 (SqlSessionUtils.java:148) SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@6cdba6dc] was not registered for synchronization because synchronization is not active
+DEBUG [main] 2018-06-25 09:46:04 (SpringManagedTransaction.java:87) JDBC Connection [503938393, URL=jdbc:mysql://127.0.0.1/smbms?characterEncoding=utf-8&useSSL=false, UserName=root@localhost, MySQL Connector Java] will not be managed by Spring
+DEBUG [main] 2018-06-25 09:46:04 (BaseJdbcLogger.java:159) ==>  Preparing: select b.*,p.proName from smbms_bill b,smbms_provider p WHERE b.productName like CONCAT('%',?,'%') and p.id=? and b.isPayment=? and b.providerId=p.id 
+DEBUG [main] 2018-06-25 09:46:04 (BaseJdbcLogger.java:159) ==> Parameters: 肥宅(String), 1(Integer), 2(Integer)
+DEBUG [main] 2018-06-25 09:46:04 (SqlSessionUtils.java:191) Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@6cdba6dc]
+DEBUG [main] 2018-06-25 09:47:19 (LogFactory.java:135) Logging initialized using 'class org.apache.ibatis.logging.log4j2.Log4j2Impl' adapter.
+DEBUG [main] 2018-06-25 09:47:19 (SqlSessionUtils.java:97) Creating a new SqlSession
+DEBUG [main] 2018-06-25 09:47:19 (SqlSessionUtils.java:148) SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@6cdba6dc] was not registered for synchronization because synchronization is not active
+DEBUG [main] 2018-06-25 09:47:19 (SpringManagedTransaction.java:87) JDBC Connection [503938393, URL=jdbc:mysql://127.0.0.1/smbms?characterEncoding=utf-8&useSSL=false, UserName=root@localhost, MySQL Connector Java] will not be managed by Spring
+DEBUG [main] 2018-06-25 09:47:19 (BaseJdbcLogger.java:159) ==>  Preparing: select b.*,p.proName from smbms_bill b,smbms_provider p WHERE b.productName like CONCAT('%',?,'%') and p.id=? and b.isPayment=? and b.providerId=p.id 
+DEBUG [main] 2018-06-25 09:47:19 (BaseJdbcLogger.java:159) ==> Parameters: 肥宅(String), 1(Integer), 2(Integer)
+DEBUG [main] 2018-06-25 09:47:19 (SqlSessionUtils.java:191) Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@6cdba6dc]
+DEBUG [main] 2018-06-25 09:51:27 (LogFactory.java:135) Logging initialized using 'class org.apache.ibatis.logging.log4j2.Log4j2Impl' adapter.
+DEBUG [main] 2018-06-25 09:51:27 (SqlSessionUtils.java:97) Creating a new SqlSession
+DEBUG [main] 2018-06-25 09:51:27 (SqlSessionUtils.java:148) SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@6cdba6dc] was not registered for synchronization because synchronization is not active
+DEBUG [main] 2018-06-25 09:51:27 (SpringManagedTransaction.java:87) JDBC Connection [503938393, URL=jdbc:mysql://127.0.0.1/smbms?characterEncoding=utf-8&useSSL=false, UserName=root@localhost, MySQL Connector Java] will not be managed by Spring
+DEBUG [main] 2018-06-25 09:51:27 (BaseJdbcLogger.java:159) ==>  Preparing: select b.*,p.proName from smbms_bill b,smbms_provider p WHERE b.productName like CONCAT('%',?,'%') and p.id=? and b.isPayment=? and b.providerId=p.id 
+DEBUG [main] 2018-06-25 09:51:27 (BaseJdbcLogger.java:159) ==> Parameters: 肥宅(String), 1(Integer), 2(Integer)
+DEBUG [main] 2018-06-25 09:51:27 (BaseJdbcLogger.java:159) <==      Total: 1
+DEBUG [main] 2018-06-25 09:51:27 (SqlSessionUtils.java:191) Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@6cdba6dc]

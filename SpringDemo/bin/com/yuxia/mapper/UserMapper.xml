@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yuxia.mapper.UserMapper">
+	<insert id="addUser" parameterType="User">
+		insert into
+		smbms_user(id,userCode,userName,userPassword,gender,
+		birthday,phone,address,createdBy,creationDate)
+		values(#{id},#{userCode},#{userName},#{userPassword},#{gender},
+		#{birthday},#{phone},#{address},#{createdBy},#{creationDate})
+	</insert>
+	<select id="selectByRoleId" resultMap="userRoleResult">
+		select u.*,r.id as r_id
+		,r.roleCode,r.roleName
+		from smbms_user
+		u,smbms_role r
+		<where>
+			<if test="userName!=null and userName!=''">
+				u.userName like CONCAT('%',#{userName},'%')
+			</if>
+			<if test="userRole!=null">
+				and u.userRole=#{userRole}
+			</if>
+			and u.userRole = r.id
+		</where>
+		order by creationDate DESC limit #{from},#{pageSize}
+	</select>
+	<select id="selectUserListById" resultType="User">
+		select * from smbms_user
+		where userRole in
+		<!-- collection根据传入参数的类型来绝对，数组为array，List为list， 如果是Map，直接是Map的引用名 -->
+		<foreach collection="array" item="roleIds" open="(" separator=","
+			close=")">
+			#{roleIds}
+		</foreach>
+	</select>
+	<select id="getUserList_choose" resultType="User">
+		select * from smbms_user
+		where 1=1
+		<choose>
+			<when test="userName!=null and userName!=''">
+				and userName like CONCAT('%',#{userName},'%')
+			</when>
+			<when test="userCode!=null and userCode!=''">
+				and userCode like CONCAT('%',#{userCode},'%')
+			</when>
+			<when test="userRole!=null">
+				and userRole=#{userRole}
+			</when>
+			<otherwise>
+				and YEAR(creationDate)=YEAR(#{creationDate})
+			</otherwise>
+
+
+		</choose>
+	</select>
+	<resultMap type="User" id="userRoleResult">
+		<id property="id" column="id" />
+		<result property="userCode" column="userCode" />
+		<result property="userName" column="userName" />
+		<!-- <result property="userRole" column="UserRole"/> -->
+		<!-- <association property="role" javaType="Role"> <id property="id" column="r_id" 
+			/> <result property="roleCode" column="roleCode" /> <result property="roleName" 
+			column="roleName" /> </association> -->
+		<!-- 通过resultMap实现,提高代码复用性 -->
+		<association property="role" javaType="Role" resultMap="roleResult"></association>
+	</resultMap>
+	<resultMap type="Role" id="roleResult">
+		<id property="id" column="r_id" />
+		<result property="roleCode" column="roleCode" />
+		<result property="roleName" column="roleName" />
+	</resultMap>
+	<!-- insert into smbms_user(id,userCode,userName,userPassword,gender, birthday,phone,address,userRole,createdBy,creationDate) 
+		values(1,"123","测试001","123456",1, "1997-07-13","12345678910","测试地址",1,1,"1997-07-13") -->
+</mapper>

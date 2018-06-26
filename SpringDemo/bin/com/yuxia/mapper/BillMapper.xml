@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yuxia.mapper.BillMapper">
+	<!--根据商品名称进行查询 -->
+	<select id="selectByProductName" resultMap="billList">
+		select b.*,p.proName
+		from smbms_bill b,smbms_provider p where p.proName like
+		concat('%',#{name},'%') and b.providerId=p.id
+	</select>
+	<!-- 根据供应商Id进行查询 -->
+	<select id="selectByProviderId" resultMap="billList">
+		select b.*,p.proName
+		from smbms_bill b,smbms_provider p where p.id=#{providerId} and
+		b.providerId=p.id
+	</select>
+	<!-- 根据是否付款进行查询 -->
+	<select id="selectByIsPayment" resultMap="billList">
+		select b.*,p.proName
+		from smbms_bill b,smbms_provider p where b.isPayment=#{flag} and
+		b.providerId=p.id
+	</select>
+	<!-- 根据 商品名称、供应商和是否进行查询 -->
+	<!-- 通过#{index}方式传递值 用arg0,arg1,arg2 或者 param1,param2,param3 -->
+
+	<!-- <select id="selectBill" resultMap="billList" > select b.*,p.proName 
+		from smbms_bill b,smbms_provider p where b.isPayment=#{arg2} and p.proName 
+		like concat('%',#{arg0},'%') and p.id=#{arg1} and b.providerId=p.id </select> -->
+
+	<!-- <select id="selectBill" resultMap="billList" > select b.*,p.proName 
+		from smbms_bill b,smbms_provider p where b.isPayment=#{param3} and p.proName 
+		like concat('%',#{param1},'%') and p.id=#{param2} and b.providerId=p.id </select> -->
+	<!-- 通过注解的方式，在接口给参数加上注解 -->
+	<select id="selectBill" resultMap="billList">
+		select
+		b.*,p.proName
+		from
+		smbms_bill b,smbms_provider p
+		where b.isPayment=#{flag} and p.proName
+		like concat('%',#{name},'%')
+		and
+		p.id=#{id} and b.providerId=p.id
+	</select>
+
+	<select id="selectBillList" resultMap="billList2">
+		select b.*,p.*
+		from
+		smbms_bill b,smbms_provider p
+		where b.isPayment=#{isPayment} and
+		b.productName like concat('%',#{productName},'%')
+		and
+		p.id=#{providerId} and b.providerId=p.id
+	</select>
+
+	<resultMap id="billList" type="Bill">
+		<result property="billCode" column="billCode" />
+		<result property="productName" column="productName" />
+		<result property="providName" column="proName" />
+		<result property="totalPrice" column="totalPrice" />
+		<result property="isPayment" column="isPayment" />
+		<result property="creationDate" column="creationDate" />
+	</resultMap>
+	<resultMap type="Bill" id="billList2">
+		<result property="billCode" column="billCode" />
+		<result property="productName" column="productName" />
+		<result property="totalPrice" column="totalPrice" />
+		<result property="isPayment" column="isPayment" />
+		<association property="provider" resultMap="provider"></association>
+	</resultMap>
+	<resultMap type="Provider" id="provider">
+		<result property="proCode" column="proCode" />
+		<result property="proName" column="proName" />
+		<result property="proContact" column="proContact" />
+		<result property="proPhone" column="proPhone" />
+	</resultMap>
+</mapper>
